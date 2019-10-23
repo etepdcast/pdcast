@@ -1,7 +1,7 @@
 # pdcast
 
 A new Flutter project.
-Taciano
+Taciano Amorim
 
 ## Getting Started
 
