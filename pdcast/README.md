@@ -1,7 +1,13 @@
 # pdcast
-
 A new Flutter project.
-Taciano Amorim
+
+
+## Ferramentas necessárias
+### GIT
+https://git-scm.com/book/pt-br/v1/Primeiros-passos
+https://blog.pronus.io/posts/qual-a-melhor-ferramenta-de-controle-de-versao-subversion-git-ou-mercurial/
+https://rogerdudler.github.io/git-guide/index.pt_BR.html
+
 
 ## Getting Started
 
