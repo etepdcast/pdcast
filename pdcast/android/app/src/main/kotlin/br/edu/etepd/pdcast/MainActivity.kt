@@ -1,4 +1,4 @@
-package br.edu.eteporto.pdcast.pdcast
+package br.edu.etepd.pdcast
 
 import android.os.Bundle
 
