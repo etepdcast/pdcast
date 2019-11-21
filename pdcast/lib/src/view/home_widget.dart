@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pdcast/view/basic_app_bar_sample.dart';
+import 'package:pdcast/src/model/choice.dart';
+
 
 class HomeWidget extends StatefulWidget {
   @override
