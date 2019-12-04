@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "929886649430",
+    "firebase_url": "https://pdcast-31768.firebaseio.com",
+    "project_id": "pdcast-31768",
+    "storage_bucket": "pdcast-31768.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929886649430:android:6600901cc6c8f7179dcff7",
+        "android_client_info": {
+          "package_name": "br.edu.etepd.pdcast"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "929886649430-qqcqps197dme68e0k11d1t1u8sva0pqo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi_vmlowoE2FVpknTaYYGjAf2-UokUE90"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "929886649430-qqcqps197dme68e0k11d1t1u8sva0pqo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

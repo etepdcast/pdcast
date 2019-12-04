@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pdcast/src/model/choice.dart';
+import 'package:pdcast/src/view/canal_manutencao.dart';
+import 'component/choice.dart';
 
 class HomeWidget extends StatefulWidget {
   @override
@@ -21,9 +22,18 @@ class _HomeWidgetState extends State<HomeWidget> with SingleTickerProviderStateM
 
   void _select(Choice choice) {
     // Causes the app to rebuild with the new _selectedChoice.
-    setState(() {
-      _selectedChoice = choice;
-    });
+    if ( choice.sigla == "CONFIG") {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => null),
+      );
+    } else {
+       Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => CanalWidget()),
+      );     
+    }
+
   }  
   
   final List<String> entries = <String>['Post A', 'Post B',
@@ -123,8 +133,8 @@ class _HomeWidgetState extends State<HomeWidget> with SingleTickerProviderStateM
 } 
 
 const List<Choice> choices = const <Choice>[
-  const Choice(title: 'Meus canais', icon: Icons.directions_car),
-  const Choice(title: 'Configuração', icon: Icons.directions_bike),
+  const Choice(title: 'Editar meus canais', icon: Icons.directions_car, sigla: "EMC"),
+  const Choice(title: 'Configuração', icon: Icons.directions_bike, sigla: "CONFIG"),
 ];
 
 class ChoiceCard extends StatelessWidget {
