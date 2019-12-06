@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "929886649430",
-    "firebase_url": "https://pdcast-31768.firebaseio.com",
-    "project_id": "pdcast-31768",
-    "storage_bucket": "pdcast-31768.appspot.com"
+    "project_number": "1009507027461",
+    "firebase_url": "https://pdcast-ff88d.firebaseio.com",
+    "project_id": "pdcast-ff88d",
+    "storage_bucket": "pdcast-ff88d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:929886649430:android:6600901cc6c8f7179dcff7",
+        "mobilesdk_app_id": "1:1009507027461:android:0fb141f47339f99487ea6c",
         "android_client_info": {
           "package_name": "br.edu.etepd.pdcast"
         }
       },
       "oauth_client": [
         {
-          "client_id": "929886649430-qqcqps197dme68e0k11d1t1u8sva0pqo.apps.googleusercontent.com",
+          "client_id": "1009507027461-da21iktbqma9for5341rvngedi2e06i7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.edu.etepd.pdcast",
+            "certificate_hash": "610a575e40a309c1678569eb81d787faeedc822b"
+          }
+        },
+        {
+          "client_id": "1009507027461-q9ntbnt0cj09d8bsppgv88g3uooma6qa.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAi_vmlowoE2FVpknTaYYGjAf2-UokUE90"
+          "current_key": "AIzaSyCPnAUTFt73zDXDHeFtzs4mPsAijqISYWg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "929886649430-qqcqps197dme68e0k11d1t1u8sva0pqo.apps.googleusercontent.com",
+              "client_id": "1009507027461-q9ntbnt0cj09d8bsppgv88g3uooma6qa.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

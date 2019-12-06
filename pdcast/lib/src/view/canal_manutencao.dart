@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CanalWidget extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class _CanalWidgetState extends State<CanalWidget> with SingleTickerProviderStat
     return MaterialApp(
       home: new Scaffold(
         appBar: new AppBar(
-          title: new Text('Formulário com Validação'),
+          title: new Text('Meu canal'),
         ),
         body: new SingleChildScrollView(
           child: new Container(
@@ -82,6 +83,10 @@ class _CanalWidgetState extends State<CanalWidget> with SingleTickerProviderStat
       _key.currentState.save();
       print("Nome $nome");
       print("Descrição $descricao");
+
+      // Salva os dados no firebase
+      Firestore.instance.collection("canais").add({"nome":nome, "descricao":descricao});
+
     } else {
       // erro de validação
       setState(() {
