@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pdcast/src/view/home_widget.dart';
+import 'package:pdcast/src/app.dart';
 
-void main() => runApp(MaterialApp(
-  home: HomeWidget(),
-  debugShowCheckedModeBanner: false,
-));
+void main() => runApp(App());
