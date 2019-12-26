@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class CanalWidget extends StatefulWidget {
+class CanalPage extends StatefulWidget {
   @override
-  _CanalWidgetState createState() => _CanalWidgetState();
+  _CanalPageState createState() => _CanalPageState();
 }
 
-class _CanalWidgetState extends State<CanalWidget> with SingleTickerProviderStateMixin{
+class _CanalPageState extends State<CanalPage> with SingleTickerProviderStateMixin{
   GlobalKey<FormState> _key = new GlobalKey();
   bool _validate = false;
   String nome, descricao;

@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:pdcast/src/view/home_widget.dart';
+import 'package:pdcast/src/ui/home_page.dart';
 
 final ThemeData temaIOS = ThemeData(
     primaryColor: Colors.grey[200],
@@ -18,9 +18,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: Platform.isIOS ? temaIOS : temaPadrao,
-      home: Scaffold(
-        body: HomeWidget(),
-      ),
+      home: HomePage()
     );
   }
 }

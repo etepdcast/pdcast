@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pdcast/src/view/canal_manutencao.dart';
-import 'component/choice.dart';
+import 'package:pdcast/src/model/choice.dart';
+import 'package:pdcast/src/ui/canal_page.dart';
 
-class HomeWidget extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _HomeWidgetState createState() => _HomeWidgetState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomeWidgetState extends State<HomeWidget> with SingleTickerProviderStateMixin{
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
   
   int _selectedIndex= 0;
   
@@ -30,7 +30,7 @@ class _HomeWidgetState extends State<HomeWidget> with SingleTickerProviderStateM
     } else {
        Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => CanalWidget()),
+        MaterialPageRoute(builder: (context) => CanalPage()),
       );     
     }
 
