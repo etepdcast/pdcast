@@ -29,14 +29,12 @@ dependencies:
   firebase_storage: ^3.0.8    # Armazena os arquivos 
   firebase_auth: ^0.15.2      # Autenticacao
   google_sign_in: ^3.2.2      # Recupera o login do google
+  splashscreen: ^1.2.0        # Plugin de splashscreen
+
+  audioplayers: ^0.13.5
   
 #  path_provider: ^1.4.2
 #  sqflite: 1.1.7+2 
-
-#  firebase_core: ^0.4.0+5   # Recursos basicos  
-#  cloud_firestore: ^0.12.5 # Banco de dados
-#  firebase_storage: ^3.0.1  # Armazena os arquivos
-#  firebase_auth: ^0.14.0+9  # Autenticacao  
 
 dev_dependencies:
   flutter_test:
@@ -54,9 +52,27 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
-  #  - images/a_dot_ham.jpeg
+  assets:
+   - assets/bg.png
+   - assets/logo.png
+   - assets/logogrande.png
+   - assets/usuario.png
+
+  # Categorias
+   - assets/arte.png
+   - assets/bio.png
+   - assets/edfisica.png
+   - assets/empreendedorismo.png
+   - assets/filosofia.png
+   - assets/fisica.png
+   - assets/geo.png
+   - assets/historia.png
+   - assets/ingles.png
+   - assets/math.png
+   - assets/portugues.png
+   - assets/quimica.png
+   - assets/sociologia.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

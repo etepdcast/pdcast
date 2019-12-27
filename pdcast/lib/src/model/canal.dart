@@ -8,6 +8,6 @@ class Canal {
   Categoria categoria;
 
   // construtor
-  Canal(this.nome, this.descricao, this.categoria);
+  Canal({this.nome, this.descricao, this.categoria});
 
 }

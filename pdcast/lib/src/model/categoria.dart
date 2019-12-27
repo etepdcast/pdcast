@@ -4,6 +4,6 @@ class Categoria {
   String nome;
 
   // construtor
-  Categoria(this.id, this.nome);
+  Categoria({this.id, this.nome});
 
 }
