@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:pdcast/src/model/choice.dart';
 import 'package:pdcast/src/model/podCast.dart';
 import 'package:pdcast/src/ui/canal_lista_page.dart';
+import 'package:pdcast/src/ui/configuracao_page.dart';
 import 'package:pdcast/src/ui/widgets/appBar_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,7 +18,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     if ( choice.sigla == "CONFIG") {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => null),
+        MaterialPageRoute(builder: (context) => ConfiguracaoPage()),
       );
     } else {
        Navigator.push(
@@ -115,11 +116,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   }
 } 
 
-/**
+/*
  * Cria o menu superior
  */
 const List<Choice> choices = const <Choice>[
-  const Choice(title: 'Editar meus canais', icon: Icons.directions_car, sigla: "EMC"),
+  const Choice(title: 'Meus canais', icon: Icons.directions_car, sigla: "EMC"),
   const Choice(title: 'Configuração', icon: Icons.directions_bike, sigla: "CONFIG"),
 ];
 

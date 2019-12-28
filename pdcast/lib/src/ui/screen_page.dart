@@ -12,29 +12,30 @@ class _ScreenPageState extends State<ScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-            children: <Widget>[
-            SplashScreen(
-                seconds: 5,
-                gradientBackground: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                    Color(0xffED213A),
-                    Color(0xff93291E)
-                ],
-                ),
-                navigateAfterSeconds: HomePage(),
-                loaderColor: Colors.transparent,
+      children: <Widget>[
+        SplashScreen(
+            seconds: 5,
+            gradientBackground: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+                Colors.green
+                // Color(0xffED213A),
+                // Color(0xff93291E)
+              ],
             ),
-            Container(
-                decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/logo.png"),
-                    fit: BoxFit.scaleDown,
-                ),
-                ),
-            ),
-            ],
-        );
+            navigateAfterSeconds: HomePage(),
+            loaderColor: Colors.transparent,
+        ),
+        Container(
+          decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/logo.png"),
+              fit: BoxFit.scaleDown,
+          ),
+          ),
+        ),
+      ],
+    );
   }
 }

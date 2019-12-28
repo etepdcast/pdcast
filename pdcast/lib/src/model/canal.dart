@@ -1,13 +1,13 @@
-import 'package:pdcast/src/model/categoria.dart';
-
 class Canal {
   // atributos
   String id;
   String nome;
-  String descricao;
-  Categoria categoria;
+  String resumo;
+  String categoria;
+  String idCriador;
+  String dataCriacao;
 
   // construtor
-  Canal({this.nome, this.descricao, this.categoria});
+  Canal({this.nome, this.resumo, this.categoria, this.idCriador,this.dataCriacao});
 
 }
