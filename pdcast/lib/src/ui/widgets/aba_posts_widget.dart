@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pdcast/src/model/canal.dart';
 import 'package:pdcast/src/model/podCast.dart';
 import 'package:pdcast/src/ui/widgets/pod_cast_widget.dart';
+import 'package:pdcast/src/utils/utils.dart';
 
 class AbaPostsWidget extends StatefulWidget {
   @override
@@ -10,14 +12,17 @@ class AbaPostsWidget extends StatefulWidget {
 class _AbaPostsWidgetState extends State<AbaPostsWidget> {
 
  final List<PodCast> podcasts = <PodCast>[
-    PodCast(nome: 'A Cara do Brasil', autor: 'Autor 01'),
-    PodCast(nome: 'A BH que queremos', autor: 'Autor 02'),
-    PodCast(nome: 'A casa nômade', autor: 'Autor 03'),
-    PodCast(nome: 'A Semana política', autor: 'Autor 014'),
-    PodCast(nome: 'A nossa lingua de todo dia', autor: 'Autor 015'),
-    PodCast(nome: 'A Politica como Ela É', autor: 'Autor 016'),
-    PodCast(nome: 'Academia CBN', autor: 'Autor 017'),
-    PodCast(nome: 'Autoesporte na CBN', autor: 'Autor 018'),
+    PodCast(nome: 'A Cara do Brasil', autor: 'Autor 01', canal: Canal(categoria: Utils.categoriaArte)),
+    PodCast(nome: 'A BH que queremos', autor: 'Autor 02', canal: Canal(categoria: Utils.categoriaMatematica)),
+    PodCast(nome: 'A casa nômade', autor: 'Autor 03', canal: Canal(categoria: Utils.categoriaPortugues)),
+    PodCast(nome: 'A Semana política', autor: 'Autor 014', canal: Canal(categoria: Utils.categoriaQuimica)),
+    PodCast(nome: 'A nossa lingua de todo dia', autor: 'Autor 015', canal: Canal(categoria: Utils.categoriaHistoria)),
+    PodCast(nome: 'A Politica como Ela É', autor: 'Autor 016', canal: Canal(categoria: Utils.categoriaIngles)),
+    PodCast(nome: 'Academia CBN', autor: 'Autor 017', canal: Canal(categoria: Utils.categoriaGeografia)),
+    PodCast(nome: 'Autoesporte na CBN', autor: 'Autor 018', canal: Canal(categoria: Utils.categoriaBiologia)),
+    PodCast(nome: 'Educação ', autor: 'Autor 9384857', canal: Canal(categoria: Utils.categoriaMatematica)),
+    PodCast(nome: 'Celulas', autor: 'Paulo Rafael Lopes', canal: Canal(categoria: Utils.categoriaBiologia)),
+
   ];
 
   // final List<String> entries = <String>['Post A', 'Post B',

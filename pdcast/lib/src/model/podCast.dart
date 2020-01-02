@@ -1,3 +1,5 @@
+import 'package:pdcast/src/model/canal.dart';
+
 class PodCast {
 
   // atributos
@@ -5,9 +7,10 @@ class PodCast {
   String autor;
   String pathAudio;
   String pathICon;
+  Canal canal;
 
   // construtor
-  PodCast({this.nome, this.autor, this.pathAudio, this.pathICon});
+  PodCast({this.nome, this.autor, this.pathAudio, this.pathICon, this.canal});
 
 /*  
 Arquivo: 

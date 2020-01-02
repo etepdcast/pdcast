@@ -3,9 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pdcast/src/model/canal.dart';
 import 'package:pdcast/src/ui/canal_lista_page.dart';
 import 'package:pdcast/src/ui/widgets/titulo_widget.dart';
+import 'package:pdcast/src/utils/utils.dart';
 
 class CanalPage extends StatefulWidget {
-
   final Canal canal;
 
   CanalPage(this.canal);
@@ -14,9 +14,8 @@ class CanalPage extends StatefulWidget {
   _CanalPageState createState() => _CanalPageState();
 }
 
-class _CanalPageState extends State<CanalPage> with SingleTickerProviderStateMixin{
-
-
+class _CanalPageState extends State<CanalPage>
+    with SingleTickerProviderStateMixin {
   GlobalKey<FormState> _key = new GlobalKey();
   bool _validate = false;
   String _nome, _resumo, _categoria;
@@ -28,12 +27,21 @@ class _CanalPageState extends State<CanalPage> with SingleTickerProviderStateMix
     _categoria = _dropDownMenuItems[0].value;
     super.initState();
   }
-  
+
   /*
    * LISTAR CATEGORIAS 
    */
-  List _categorias =
-  ["Português", "Matemática", "Fisica", "Química", "Biologia"];
+  List _categorias = [
+    Utils.categoriaArte,
+    Utils.categoriaBiologia,
+    Utils.categoriaFisica,
+    Utils.categoriaGeografia,
+    Utils.categoriaHistoria,
+    Utils.categoriaIngles,
+    Utils.categoriaMatematica,
+    Utils.categoriaPortugues,
+    Utils.categoriaQuimica         
+  ];
 
   List<DropdownMenuItem<String>> _dropDownMenuItems;
 
@@ -43,10 +51,7 @@ class _CanalPageState extends State<CanalPage> with SingleTickerProviderStateMix
     for (String city in _categorias) {
       // here we are creating the drop down menu items, you can customize the item right here
       // but I'll just use a simple text for this
-      items.add(new DropdownMenuItem(
-          value: city,
-          child: new Text(city)
-      ));
+      items.add(new DropdownMenuItem(value: city, child: new Text(city)));
     }
     return items;
   }
@@ -54,23 +59,20 @@ class _CanalPageState extends State<CanalPage> with SingleTickerProviderStateMix
   // Seta na categoria a selecionada
   void changedDropDownItem(String selected) {
     setState(() {
-      _categoria= selected;
+      _categoria = selected;
       print("categoria: $_categoria");
-
     });
-  }  
-  
+  }
+
   /*
    * SALVAR CANAL 
-   */  
+   */
   _salvarDados() {
-
     if (_key.currentState.validate()) {
-
-      if ( _categoria.isEmpty ) {
-          setState(() {
-            _mensagemErro = "Preencha a senha! digite mais de 6 caracteres";
-          });
+      if (_categoria.isEmpty) {
+        setState(() {
+          _mensagemErro = "Preencha a senha! digite mais de 6 caracteres";
+        });
       }
 
       // Sem erros na validação
@@ -79,32 +81,27 @@ class _CanalPageState extends State<CanalPage> with SingleTickerProviderStateMix
       print("resumo  $_resumo");
       print("categoria:  $_categoria");
 
-      DateTime now= DateTime.now();
+      DateTime now = DateTime.now();
 
       // Salva os dados no firebase
-      Firestore.instance.collection("canais").add(
-        {
-          "nome":_nome, 
-          "resumo": _resumo, 
-          "categoria": _categoria,
-          "dataCriacao": "$now.day/$now.month/'$now.year",
-          "idCriador": "IDCRIADOR",
-        }
-
-      ).then((onValue){
-        Navigator.push(context,
+      Firestore.instance.collection("canais").add({
+        "nome": _nome,
+        "resumo": _resumo,
+        "categoria": _categoria,
+        "dataCriacao": "$now.day/$now.month/'$now.year",
+        "idCriador": "IDCRIADOR",
+      }).then((onValue) {
+        Navigator.push(
+          context,
           MaterialPageRoute(builder: (context) => CanalListaPage()),
         );
-
       }).catchError((error) {
-        print("erro app: " + error.toString() );
+        print("erro app: " + error.toString());
         setState(() {
-        _mensagemErro = "Erro ao cadastrar o canal, verifique os campos e tente novamente!";
-        }
-      );
-
-    });
-
+          _mensagemErro =
+              "Erro ao cadastrar o canal, verifique os campos e tente novamente!";
+        });
+      });
     } else {
       // erro de validação
       setState(() {
@@ -118,14 +115,13 @@ class _CanalPageState extends State<CanalPage> with SingleTickerProviderStateMix
     return MaterialApp(
       home: new Scaffold(
         appBar: new AppBar(
-          backgroundColor: Colors.black,
-          title: Text('PdCast > Meu canal'),  
-
-          automaticallyImplyLeading: true,
-          leading: IconButton(icon:Icon(Icons.arrow_back),
-            onPressed:() => Navigator.pop(context, false),
-          )          
-        ),
+            backgroundColor: Colors.black,
+            title: Text('PdCast > Meu canal'),
+            automaticallyImplyLeading: true,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () => Navigator.pop(context, false),
+            )),
         body: new SingleChildScrollView(
           child: new Container(
             margin: new EdgeInsets.all(15.0),
@@ -140,18 +136,14 @@ class _CanalPageState extends State<CanalPage> with SingleTickerProviderStateMix
     );
   }
 
-
-
-  // Monta o formulárioblzMas 
+  // Monta o formulárioblzMas
   Widget _formUI() {
     return Column(
       children: <Widget>[
         TituloWidget(texto: "Cadastrar canal"),
         TextFormField(
-          decoration: InputDecoration(
-            hintText: 'Nome',
-            border: OutlineInputBorder() 
-          ),
+          decoration:
+              InputDecoration(hintText: 'Nome', border: OutlineInputBorder()),
           keyboardType: TextInputType.text,
           maxLength: 40,
           validator: _validarNome,
@@ -160,28 +152,26 @@ class _CanalPageState extends State<CanalPage> with SingleTickerProviderStateMix
           },
         ),
         TextFormField(
-            decoration: InputDecoration(hintText: 'Resumo',            
-              border: OutlineInputBorder() 
-            ),
+            decoration: InputDecoration(
+                hintText: 'Resumo', border: OutlineInputBorder()),
             maxLines: 5,
             maxLength: 300,
             validator: _validarDescricao,
             onSaved: (String val) {
               _resumo = val;
-            }
-          ),
+            }),
         DropdownButton(
           value: _categoria,
           items: _dropDownMenuItems,
           onChanged: changedDropDownItem,
-        ),          
+        ),
         SizedBox(height: 15.0),
         RaisedButton(
           color: Colors.green,
           textColor: Colors.white,
           disabledColor: Colors.grey,
           shape: new RoundedRectangleBorder(
-          borderRadius: new BorderRadius.circular(30.0)),
+              borderRadius: new BorderRadius.circular(30.0)),
           onPressed: _salvarDados,
           child: Text('Salvar'),
         ),
@@ -189,10 +179,7 @@ class _CanalPageState extends State<CanalPage> with SingleTickerProviderStateMix
         Center(
           child: Text(
             _mensagemErro,
-            style: TextStyle(
-                color: Colors.blue,
-                fontSize: 20
-            ),
+            style: TextStyle(color: Colors.blue, fontSize: 20),
           ),
         )
       ],
@@ -213,8 +200,7 @@ class _CanalPageState extends State<CanalPage> with SingleTickerProviderStateMix
   String _validarDescricao(String value) {
     if (value.length == 0) {
       return "Escreva um resumo";
-    } 
+    }
     return null;
   }
-
 }

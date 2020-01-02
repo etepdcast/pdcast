@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pdcast/src/model/canal.dart';
 import 'package:pdcast/src/model/podCast.dart';
 import 'package:pdcast/src/ui/widgets/pod_cast_widget.dart';
+import 'package:pdcast/src/utils/utils.dart';
 
 class AbaFavoritosWidget extends StatefulWidget {
   @override
@@ -9,9 +11,10 @@ class AbaFavoritosWidget extends StatefulWidget {
 
 class _AbaFavoritosWidgetState extends State<AbaFavoritosWidget> {
 final List<PodCast> podcasts = <PodCast>[
-    PodCast(nome: 'A Politica como Ela É', autor: 'Autor 016'),
-    PodCast(nome: 'Academia CBN', autor: 'Autor 017'),
-    PodCast(nome: 'Autoesporte na CBN', autor: 'Autor 018'),
+    PodCast(nome: 'A Cara do Brasil', autor: 'Autor 01', canal: Canal(categoria: Utils.categoriaArte)),
+    PodCast(nome: 'A BH que queremos', autor: 'Autor 02', canal: Canal(categoria: Utils.categoriaMatematica)),
+    PodCast(nome: 'A casa nômade', autor: 'Autor 03', canal: Canal(categoria: Utils.categoriaPortugues)),
+    PodCast(nome: 'A Semana política', autor: 'Autor 014', canal: Canal(categoria: Utils.categoriaQuimica)),
   ];
 
   @override
