@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pdcast/src/model/choice.dart';
-import 'package:pdcast/src/model/podCast.dart';
 import 'package:pdcast/src/ui/canal_lista_page.dart';
 import 'package:pdcast/src/ui/configuracao_page.dart';
+import 'package:pdcast/src/ui/widgets/aba_downloads_widget.dart';
+import 'package:pdcast/src/ui/widgets/aba_favoritos_widget.dart';
+import 'package:pdcast/src/ui/widgets/aba_posts_widget.dart';
 import 'package:pdcast/src/ui/widgets/appBar_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,20 +30,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     }
   }  
 
-  final List<PodCast> podcasts = <PodCast>[
-    PodCast(nome: 'A Cara do Brasil'),
-    PodCast(nome: 'A BH que queremos'),
-    PodCast(nome: 'A casa nômade'),
-    PodCast(nome: 'A Semana política'),
-    PodCast(nome: 'A nossa lingua de todo dia'),
-    PodCast(nome: 'A Politica como Ela É'),
-    PodCast(nome: 'Academia CBN'),
-    PodCast(nome: 'Autoesporte na CBN'),
-  ];
-
-  final List<String> entries = <String>['Post A', 'Post B',
-    'Post C', 'Post D', 'Post E', 'Post F', 'Post G'];
-  final List<int> colors = <int>[600, 500, 100, 800, 600, 500, 100, 600];
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +43,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 3,
+        length: 2,
         child: Scaffold(
           //appBar: AppBarWidget(),
           appBar: AppBar(
@@ -84,30 +73,19 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   text: 'Favoritos',
                   icon: Icon(Icons.favorite)
                 ),
-                Tab(
-                  text: 'Downloads',
-                  icon: Icon(Icons.file_download)
-                ), 
+                // Tab(
+                //   text: 'Downloads',
+                //   icon: Icon(Icons.file_download)
+                // ), 
               ],
             ),
 
           ),
           body: TabBarView(
             children: [
-              ListView.separated(
-                padding: const EdgeInsets.all(8),
-                itemCount: podcasts.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    height: 50,
-                    color: Colors.amber[colors[index]],
-                    child: Center(child: Text('${podcasts[index].nome}')),
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) => const Divider(),
-              ),
-              Icon(Icons.favorite),
-              Icon(Icons.file_download),
+              AbaPostsWidget(),
+              AbaFavoritosWidget(),
+              // AbaDownloadsWidget(),
             ],
           ),
         ),
@@ -115,35 +93,3 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     );
   }
 } 
-
-/*
- * Cria o menu superior
- */
-const List<Choice> choices = const <Choice>[
-  const Choice(title: 'Meus canais', icon: Icons.directions_car, sigla: "EMC"),
-  const Choice(title: 'Configuração', icon: Icons.directions_bike, sigla: "CONFIG"),
-];
-
-class ChoiceCard extends StatelessWidget {
-  const ChoiceCard({Key key, this.choice}) : super(key: key);
-
-  final Choice choice;
-
-  @override
-  Widget build(BuildContext context) {
-    final TextStyle textStyle = Theme.of(context).textTheme.display1;
-    return Card(
-      color: Colors.white,
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Icon(choice.icon, size: 128.0, color: textStyle.color),
-            Text(choice.title, style: textStyle),
-          ],
-        ),
-      ),
-    );
-  }
-}

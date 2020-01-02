@@ -7,6 +7,7 @@ class TituloWidget extends StatefulWidget {
 
   @override
   _TituloWidgetState createState() => _TituloWidgetState();
+  
 }
 
 class _TituloWidgetState extends State<TituloWidget> {

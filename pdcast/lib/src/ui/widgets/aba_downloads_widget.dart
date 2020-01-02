@@ -8,8 +8,6 @@ class AbaDownloadsWidget extends StatefulWidget {
 class _AbaDownloadsWidgetState extends State<AbaDownloadsWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('ABA DOWNLOADS'),
-    );
+    return Icon(Icons.chat);
   }
 }
