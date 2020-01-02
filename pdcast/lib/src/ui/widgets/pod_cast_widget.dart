@@ -25,6 +25,12 @@ class _PodCastWidgetState extends State<PodCastWidget> {
       imagem= 'assets/arte.png';
     } else if ( Utils.categoriaBiologia == widget.podCast.canal.categoria ) {
       imagem= 'assets/bio.png';
+    } else if ( Utils.categoriaEducFisica == widget.podCast.canal.categoria ) {
+      imagem= 'assets/edfisica.png';
+    } else if ( Utils.categoriaEmpreendedorismo == widget.podCast.canal.categoria ) {
+      imagem= 'assets/empreendedorismo.png';
+    } else if ( Utils.categoriaFilosofia == widget.podCast.canal.categoria ) {
+      imagem= 'assets/filosofia.png';            
     } else if ( Utils.categoriaFisica == widget.podCast.canal.categoria ) {
       imagem= 'assets/fisica.png';
     } else if ( Utils.categoriaGeografia == widget.podCast.canal.categoria ) {
@@ -39,8 +45,29 @@ class _PodCastWidgetState extends State<PodCastWidget> {
       imagem= 'assets/portugues.png';
     } else if ( Utils.categoriaQuimica == widget.podCast.canal.categoria ) {
       imagem= 'assets/quimica.png';
+    } else if ( Utils.categoriaSociologia == widget.podCast.canal.categoria ) {
+      imagem= 'assets/sociologia.png';      
     } else {
       imagem= 'assets/logo.png';
+    }
+    
+    _tocarPost(String id) async {
+      print("Tocar post $id");
+    }
+
+    _gerenciarFavorito(String id) async {
+      print("_gerenciarFavorito $id");
+
+      if ( 0 == 0 ) {
+        print("Salvar $id");
+
+      } else {
+        print("Remover $id");
+      }
+
+      setState(() {
+        
+      });
     }
 
     return Container( 
@@ -58,13 +85,6 @@ class _PodCastWidgetState extends State<PodCastWidget> {
                     decoration: BoxDecoration(
                       image: DecorationImage(image: AssetImage(imagem))
                     ),
-                    // child: FlatButton(
-                    //   onPressed: () => Navigator.push(
-                    //     context, 
-                    //     MaterialPageRoute(builder: (context) => AddCardWidget(model))
-                    //   ),
-                    //   child: new Text(model.name),
-                    // ),
                   ),                    
                   Container(
                     padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -104,10 +124,9 @@ class _PodCastWidgetState extends State<PodCastWidget> {
                     child: IconButton(
                       icon: Icon(Icons.play_circle_outline),
                       highlightColor: Colors.pink,
-                      onPressed: ()=> Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context) => null)
-                      ),
+                      onPressed: (){
+                        _tocarPost(widget.podCast.id);
+                      },
                     ),
                   ),
                   Container(
@@ -115,10 +134,9 @@ class _PodCastWidgetState extends State<PodCastWidget> {
                     child: IconButton(
                       icon: Icon(Icons.favorite_border),
                       highlightColor: Colors.pink,
-                      onPressed: ()=> Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context) => null)
-                      ),
+                      onPressed:  (){
+                        _gerenciarFavorito(widget.podCast.id);
+                      },
                     ),
                   ),                  
                 ]

@@ -12,22 +12,17 @@ class AbaPostsWidget extends StatefulWidget {
 class _AbaPostsWidgetState extends State<AbaPostsWidget> {
 
  final List<PodCast> podcasts = <PodCast>[
-    PodCast(nome: 'A Cara do Brasil', autor: 'Autor 01', canal: Canal(categoria: Utils.categoriaArte)),
-    PodCast(nome: 'A BH que queremos', autor: 'Autor 02', canal: Canal(categoria: Utils.categoriaMatematica)),
-    PodCast(nome: 'A casa nômade', autor: 'Autor 03', canal: Canal(categoria: Utils.categoriaPortugues)),
-    PodCast(nome: 'A Semana política', autor: 'Autor 014', canal: Canal(categoria: Utils.categoriaQuimica)),
-    PodCast(nome: 'A nossa lingua de todo dia', autor: 'Autor 015', canal: Canal(categoria: Utils.categoriaHistoria)),
-    PodCast(nome: 'A Politica como Ela É', autor: 'Autor 016', canal: Canal(categoria: Utils.categoriaIngles)),
-    PodCast(nome: 'Academia CBN', autor: 'Autor 017', canal: Canal(categoria: Utils.categoriaGeografia)),
-    PodCast(nome: 'Autoesporte na CBN', autor: 'Autor 018', canal: Canal(categoria: Utils.categoriaBiologia)),
-    PodCast(nome: 'Educação ', autor: 'Autor 9384857', canal: Canal(categoria: Utils.categoriaMatematica)),
-    PodCast(nome: 'Celulas', autor: 'Paulo Rafael Lopes', canal: Canal(categoria: Utils.categoriaBiologia)),
-
+    PodCast(id: "#01", nome: 'A Cara do Brasil', autor: 'Autor 01', canal: Canal(categoria: Utils.categoriaArte)),
+    PodCast(id: "#02", nome: 'A BH que queremos', autor: 'Autor 02', canal: Canal(categoria: Utils.categoriaMatematica)),
+    PodCast(id: "#03", nome: 'A casa nômade', autor: 'Autor 03', canal: Canal(categoria: Utils.categoriaPortugues)),
+    PodCast(id: "#04", nome: 'A Semana política', autor: 'Autor 014', canal: Canal(categoria: Utils.categoriaQuimica)),
+    PodCast(id: "#05", nome: 'A nossa lingua de todo dia', autor: 'Autor 015', canal: Canal(categoria: Utils.categoriaHistoria)),
+    PodCast(id: "#06", nome: 'A Politica como Ela É', autor: 'Autor 016', canal: Canal(categoria: Utils.categoriaIngles)),
+    PodCast(id: "#07", nome: 'Academia CBN', autor: 'Autor 017', canal: Canal(categoria: Utils.categoriaGeografia)),
+    PodCast(id: "#08", nome: 'Autoesporte na CBN', autor: 'Autor 018', canal: Canal(categoria: Utils.categoriaBiologia)),
+    PodCast(id: "#09", nome: 'Educação ', autor: 'Autor 9384857', canal: Canal(categoria: Utils.categoriaEmpreendedorismo)),
+    PodCast(id: "#10", nome: 'Celulas', autor: 'Paulo Rafael Lopes', canal: Canal(categoria: Utils.categoriaEducFisica)),
   ];
-
-  // final List<String> entries = <String>['Post A', 'Post B',
-  //   'Post C', 'Post D', 'Post E', 'Post F', 'Post G'];
-  // final List<int> colors = <int>[600, 500, 100, 800, 600, 500, 100, 600];
 
   @override
   Widget build(BuildContext context) {
