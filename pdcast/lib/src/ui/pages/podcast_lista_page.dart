@@ -1,39 +1,39 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:pdcast/src/model/canal.dart';
-import 'package:pdcast/src/ui/canal_page.dart';
+import 'package:pdcast/src/core/models/podCast.dart';
+import 'package:pdcast/src/ui/pages/podcast_page.dart';
 import 'package:pdcast/src/ui/widgets/titulo_widget.dart';
 
-class CanalListaPage extends StatefulWidget {
+class PodCastListaPage extends StatefulWidget {
   @override
-  _CanalListaPageState createState() => _CanalListaPageState();
+  _PodCastListaPageState createState() => _PodCastListaPageState();
 }
 
-class _CanalListaPageState extends State<CanalListaPage> {
+class _PodCastListaPageState extends State<PodCastListaPage> {
 
 
-  Future<List<Canal>> _recuperarCanais() async {
+  Future<List<PodCast>> _recuperarCanais() async {
     Firestore db = Firestore.instance;
 
     QuerySnapshot querySnapshot =
         await db.collection("canais").getDocuments();
 
-    List<Canal> listaCanais = List();
+    List<PodCast> listaCanais = List();
     for (DocumentSnapshot item in querySnapshot.documents) {
 
       var dados = item.data;
       // if( dados["email"] == _emailUsuarioLogado ) continue;
 
-      Canal canal = Canal();
-      canal.id = item.documentID;
-      canal.nome = dados["nome"];
-      canal.resumo = dados["resumo"];
-      canal.categoria = dados["categoria"];
-      canal.dataCriacao = dados["dataCriacao"];
-      canal.idCriador = dados["idCriador"];
+      PodCast podCast = PodCast();
+      podCast.id = item.documentID;
+      podCast.nome = dados["nome"];
+      podCast.resumo = dados["resumo"];
+      podCast.categoria = dados["categoria"];
+      podCast.dataCriacao = dados["dataCriacao"];
+      podCast.autor = dados["autor"];
 
-      listaCanais.add(canal);
+      listaCanais.add(podCast);
     }
 
     return listaCanais;
@@ -56,10 +56,10 @@ class _CanalListaPageState extends State<CanalListaPage> {
         return ListView.builder(
           itemCount: snapshot.data.length,
           itemBuilder: (context, index) {
-            Canal canal = snapshot.data[index];
+            PodCast podCast = snapshot.data[index];
             return Column(
               children: <Widget>[
-                Text(canal.nome,
+                Text(podCast.nome,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)
                 ),
               ],
@@ -103,11 +103,11 @@ class _CanalListaPageState extends State<CanalListaPage> {
                         print("= = = = = = = = = = = BUTTON");
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => CanalPage(null)),
+                          MaterialPageRoute(builder: (context) => PodCastPage(null)),
                         );
                       },
                       icon: Icon(Icons.add),
-                      label: Text('Adicionar novo canal'),
+                      label: Text('Adicionar novo podCast'),
                     ),
                   ), projectWidget(),
           // FutureBuilder<bool>(
@@ -128,7 +128,7 @@ class _CanalListaPageState extends State<CanalListaPage> {
 
                   //projectWidget()
                   // Container(
-                  //   child: FutureBuilder<List<Canal>>(
+                  //   child: FutureBuilder<List<PodCast>>(
                   //     future: _recuperarCanais(),
                   //     builder: (context, snapshot) {
                   //       switch (snapshot.connectionState) {
@@ -149,15 +149,15 @@ class _CanalListaPageState extends State<CanalListaPage> {
                   //               itemCount: snapshot.data.length,
                   //               itemBuilder: (_, indice) {
 
-                  //                 List<Canal> listaItens = snapshot.data;
-                  //                 Canal canal = listaItens[indice];
+                  //                 List<PodCast> listaItens = snapshot.data;
+                  //                 PodCast podCast = listaItens[indice];
 
                   //                 return ListTile(
                   //                   onTap: (){
                   //                     Navigator.pushNamed(
                   //                         context,
                   //                         "/mensagens",
-                  //                       arguments: canal
+                  //                       arguments: podCast
                   //                     );
                   //                   },
                   //                   contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
@@ -168,7 +168,7 @@ class _CanalListaPageState extends State<CanalListaPage> {
                   //                   //         ? NetworkImage(usuario.urlImagem)
                   //                   //         : null),
                   //                   title: Text(
-                  //                     canal.nome,
+                  //                     podCast.nome,
                   //                     style:
                   //                         TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   //                   ),

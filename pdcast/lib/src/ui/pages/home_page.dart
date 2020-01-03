@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pdcast/src/model/choice.dart';
-import 'package:pdcast/src/ui/canal_lista_page.dart';
-import 'package:pdcast/src/ui/configuracao_page.dart';
-import 'package:pdcast/src/ui/widgets/aba_downloads_widget.dart';
+import 'package:pdcast/src/core/models/choice.dart';
+import 'package:pdcast/src/ui/pages/configuracao_page.dart';
+import 'package:pdcast/src/ui/pages/podcast_lista_page.dart';
 import 'package:pdcast/src/ui/widgets/aba_favoritos_widget.dart';
 import 'package:pdcast/src/ui/widgets/aba_posts_widget.dart';
 import 'package:pdcast/src/ui/widgets/appBar_widget.dart';
@@ -25,12 +24,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     } else {
        Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => CanalListaPage()),
+        MaterialPageRoute(builder: (context) => PodCastListaPage()),
       );     
     }
   }  
-
- 
 
   @override
   Widget build(BuildContext context) {

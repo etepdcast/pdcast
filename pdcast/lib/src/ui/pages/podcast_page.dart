@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:pdcast/src/model/canal.dart';
-import 'package:pdcast/src/ui/canal_lista_page.dart';
+import 'package:pdcast/src/core/models/podCast.dart';
+import 'package:pdcast/src/core/utils/utils.dart';
+import 'package:pdcast/src/ui/pages/podcast_lista_page.dart';
 import 'package:pdcast/src/ui/widgets/titulo_widget.dart';
-import 'package:pdcast/src/utils/utils.dart';
 
-class CanalPage extends StatefulWidget {
-  final Canal canal;
+class PodCastPage extends StatefulWidget {
+  final PodCast podCast;
 
-  CanalPage(this.canal);
+  PodCastPage(this.podCast);
 
   @override
-  _CanalPageState createState() => _CanalPageState();
+  _PodCastPageState createState() => _PodCastPageState();
 }
 
-class _CanalPageState extends State<CanalPage>
+class _PodCastPageState extends State<PodCastPage>
     with SingleTickerProviderStateMixin {
   GlobalKey<FormState> _key = new GlobalKey();
   bool _validate = false;
@@ -93,13 +93,13 @@ class _CanalPageState extends State<CanalPage>
       }).then((onValue) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => CanalListaPage()),
+          MaterialPageRoute(builder: (context) => PodCastListaPage()),
         );
       }).catchError((error) {
         print("erro app: " + error.toString());
         setState(() {
           _mensagemErro =
-              "Erro ao cadastrar o canal, verifique os campos e tente novamente!";
+              "Erro ao cadastrar o podCast, verifique os campos e tente novamente!";
         });
       });
     } else {
@@ -116,7 +116,7 @@ class _CanalPageState extends State<CanalPage>
       home: new Scaffold(
         appBar: new AppBar(
             backgroundColor: Colors.black,
-            title: Text('PdCast > Meu canal'),
+            title: Text('PdCast > Meu podCast'),
             automaticallyImplyLeading: true,
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
@@ -140,7 +140,7 @@ class _CanalPageState extends State<CanalPage>
   Widget _formUI() {
     return Column(
       children: <Widget>[
-        TituloWidget(texto: "Cadastrar canal"),
+        TituloWidget(texto: "Cadastrar podCast"),
         TextFormField(
           decoration:
               InputDecoration(hintText: 'Nome', border: OutlineInputBorder()),
@@ -190,7 +190,7 @@ class _CanalPageState extends State<CanalPage>
     String patttern = r'(^[a-zA-Z ]*$)';
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
-      return "Informe o nome do canal";
+      return "Informe o nome do podCast";
     } else if (!regExp.hasMatch(value)) {
       return "O nome deve conter caracteres de a-z ou A-Z";
     }

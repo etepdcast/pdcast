@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pdcast/src/model/choice.dart';
-import 'package:pdcast/src/ui/canal_lista_page.dart';
+import 'package:pdcast/src/core/models/choice.dart';
+import 'package:pdcast/src/ui/pages/podcast_lista_page.dart';
 
 class AppBarWidget extends StatefulWidget implements PreferredSizeWidget {
   @override
@@ -21,7 +21,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
     } else {
        Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => CanalListaPage()),
+        MaterialPageRoute(builder: (context) => PodCastListaPage()),
       );     
     }
   }  

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pdcast/src/model/canal.dart';
-import 'package:pdcast/src/model/podCast.dart';
+import 'package:pdcast/src/core/models/podCast.dart';
+import 'package:pdcast/src/core/utils/utils.dart';
 import 'package:pdcast/src/ui/widgets/pod_cast_widget.dart';
-import 'package:pdcast/src/utils/utils.dart';
 
 class AbaFavoritosWidget extends StatefulWidget {
   @override
@@ -11,10 +10,10 @@ class AbaFavoritosWidget extends StatefulWidget {
 
 class _AbaFavoritosWidgetState extends State<AbaFavoritosWidget> {
 final List<PodCast> podcasts = <PodCast>[
-    PodCast(id: "#01", nome: 'A Cara do Brasil', autor: 'Autor 01', canal: Canal(categoria: Utils.categoriaArte)),
-    PodCast(id: "#02", nome: 'A BH que queremos', autor: 'Autor 02', canal: Canal(categoria: Utils.categoriaMatematica)),
-    PodCast(id: "#03", nome: 'A casa nômade', autor: 'Autor 03', canal: Canal(categoria: Utils.categoriaPortugues)),
-    PodCast(id: "#04", nome: 'A Semana política', autor: 'Autor 014', canal: Canal(categoria: Utils.categoriaQuimica)),
+    PodCast(id: "#01", nome: 'A Cara do Brasil', autor: 'Autor 01', categoria: Utils.categoriaArte),
+    PodCast(id: "#02", nome: 'A BH que queremos', autor: 'Autor 02', categoria: Utils.categoriaMatematica),
+    PodCast(id: "#03", nome: 'A casa nômade', autor: 'Autor 03', categoria: Utils.categoriaPortugues),
+    PodCast(id: "#04", nome: 'A Semana política', autor: 'Autor 014', categoria: Utils.categoriaQuimica),
   ];
 
   @override

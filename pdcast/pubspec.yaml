@@ -32,6 +32,9 @@ dependencies:
   splashscreen: ^1.2.0        # Plugin de splashscreen
   shared_preferences: ^0.5.6  # Gerencia o preferences no celular
 
+  #provider: ^3.0.0+1
+  #get_it: ^1.0.3+2  
+
   audioplayers: ^0.13.5
   
 #  path_provider: ^1.4.2

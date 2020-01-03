@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pdcast/src/model/podCast.dart';
-import 'package:pdcast/src/utils/size_config.dart';
-import 'package:pdcast/src/utils/utils.dart';
+import 'package:pdcast/src/core/models/podCast.dart';
+import 'package:pdcast/src/core/utils/size_config.dart';
+import 'package:pdcast/src/core/utils/utils.dart';
 
 class PodCastWidget extends StatefulWidget {
   final PodCast podCast;
@@ -21,31 +21,31 @@ class _PodCastWidgetState extends State<PodCastWidget> {
 
     // Seleciona a imagem relativa ao post
     String imagem= 'assets/edfisica.png';
-    if ( Utils.categoriaArte == widget.podCast.canal.categoria ) {
+    if ( Utils.categoriaArte == widget.podCast.categoria ) {
       imagem= 'assets/arte.png';
-    } else if ( Utils.categoriaBiologia == widget.podCast.canal.categoria ) {
+    } else if ( Utils.categoriaBiologia == widget.podCast.categoria ) {
       imagem= 'assets/bio.png';
-    } else if ( Utils.categoriaEducFisica == widget.podCast.canal.categoria ) {
+    } else if ( Utils.categoriaEducFisica == widget.podCast.categoria ) {
       imagem= 'assets/edfisica.png';
-    } else if ( Utils.categoriaEmpreendedorismo == widget.podCast.canal.categoria ) {
+    } else if ( Utils.categoriaEmpreendedorismo == widget.podCast.categoria ) {
       imagem= 'assets/empreendedorismo.png';
-    } else if ( Utils.categoriaFilosofia == widget.podCast.canal.categoria ) {
+    } else if ( Utils.categoriaFilosofia == widget.podCast.categoria ) {
       imagem= 'assets/filosofia.png';            
-    } else if ( Utils.categoriaFisica == widget.podCast.canal.categoria ) {
+    } else if ( Utils.categoriaFisica == widget.podCast.categoria ) {
       imagem= 'assets/fisica.png';
-    } else if ( Utils.categoriaGeografia == widget.podCast.canal.categoria ) {
+    } else if ( Utils.categoriaGeografia == widget.podCast.categoria ) {
       imagem= 'assets/geo.png';
-    } else if ( Utils.categoriaHistoria == widget.podCast.canal.categoria ) {
+    } else if ( Utils.categoriaHistoria == widget.podCast.categoria ) {
       imagem= 'assets/historia.png';
-    } else if ( Utils.categoriaIngles == widget.podCast.canal.categoria ) {
+    } else if ( Utils.categoriaIngles == widget.podCast.categoria ) {
       imagem= 'assets/ingles.png';
-    } else if ( Utils.categoriaMatematica == widget.podCast.canal.categoria ) {
+    } else if ( Utils.categoriaMatematica == widget.podCast.categoria ) {
       imagem= 'assets/edfisica.png';
-    } else if ( Utils.categoriaPortugues == widget.podCast.canal.categoria ) {
+    } else if ( Utils.categoriaPortugues == widget.podCast.categoria ) {
       imagem= 'assets/portugues.png';
-    } else if ( Utils.categoriaQuimica == widget.podCast.canal.categoria ) {
+    } else if ( Utils.categoriaQuimica == widget.podCast.categoria ) {
       imagem= 'assets/quimica.png';
-    } else if ( Utils.categoriaSociologia == widget.podCast.canal.categoria ) {
+    } else if ( Utils.categoriaSociologia == widget.podCast.categoria ) {
       imagem= 'assets/sociologia.png';      
     } else {
       imagem= 'assets/logo.png';

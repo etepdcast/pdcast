@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pdcast/src/ui/home_page.dart';
+import 'package:pdcast/src/ui/pages/home_page.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 class ScreenPage extends StatefulWidget {
