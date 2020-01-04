@@ -1,6 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:pdcast/src/ui/screen_page.dart';
+import 'package:pdcast/locator.dart';
+import 'package:pdcast/src/core/services/podcast_service.dart';
+import 'package:pdcast/src/core/services/usuario_service.dart';
+import 'package:pdcast/src/ui/pages/screen_page.dart';
+import 'package:provider/provider.dart';
 
 final ThemeData temaIOS = ThemeData(
     primaryColor: Colors.grey[200],
@@ -15,10 +19,16 @@ final ThemeData temaPadrao = ThemeData(
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: Platform.isIOS ? temaIOS : temaPadrao,
-      home: ScreenPage()
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(builder: (_) => locator<PodCastService>()),
+        ChangeNotifierProvider(builder: (_) => locator<UsuarioService>()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: Platform.isIOS ? temaIOS : temaPadrao,
+        home: ScreenPage()
+      )
     );
   }
 }

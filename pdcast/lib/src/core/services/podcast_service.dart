@@ -1,32 +1,49 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:pdcast/locator.dart';
+import 'package:pdcast/src/core/daos/podcast_dao.dart';
+import 'package:pdcast/src/core/models/podCast.dart';
 
-class PodCastservice {
-  final Firestore _db = Firestore.instance;
-  final String path;
-  CollectionReference ref;
+class PodCastService extends ChangeNotifier {
+  PodCastDao _api = locator<PodCastDao>();
 
-  PodCastservice( this.path ) {
-    ref = _db.collection(path);
-  }
+  List<PodCast> podCasts;
 
-  Future<QuerySnapshot> getDataCollection() {
-    return ref.getDocuments() ;
-  }
-  Stream<QuerySnapshot> streamDataCollection() {
-    return ref.snapshots() ;
-  }
-  Future<DocumentSnapshot> getDocumentById(String id) {
-    return ref.document(id).get();
-  }
-  Future<void> removeDocument(String id){
-    return ref.document(id).delete();
-  }
-  Future<DocumentReference> addDocument(Map data) {
-    return ref.add(data);
-  }
-  Future<void> updateDocument(Map data , String id) {
-    return ref.document(id).updateData(data) ;
+  Future<List<PodCast>> fetchPodCasts() async {
+    var result = await _api.getDataCollection();
+    podCasts = result.documents
+        .map((doc) => PodCast.fromMap(doc.data, doc.documentID))
+        .toList();
+    return podCasts;
   }
 
+  Stream<QuerySnapshot> fetchPodCastsAsStream() {
+    return _api.streamDataCollection();
+  }
+
+  Future<PodCast> getPodCastById(String id) async {
+    var doc = await _api.getDocumentById(id);
+    return  PodCast.fromMap(doc.data, doc.documentID) ;
+  }
+
+  Future removePodCast(String id) async{
+     await _api.removeDocument(id) ;
+     return ;
+  }
+  
+  Future updatePodCast(PodCast data,String id) async{
+    await _api.updateDocument(data.toJson(), id) ;
+    return ;
+  }
+
+  Future addPodCast(PodCast data) async{
+    var result  = await _api.addDocument(data.toJson()) ;
+    return result;
+  }
+
+  Future<QuerySnapshot> getByField(dynamic campo, String operador, String valor) async {
+    var result = await _api.getByField(campo, operador, valor);
+    return result;
+  }  
 
 }

@@ -2,8 +2,6 @@ class Utils{
 
   static String pathAsserts = "";
 
-
-
   static String categoriaArte = "Arte";
   static String categoriaBiologia = "Biologia"; 
   static String categoriaEducFisica = "Educação física";
@@ -17,5 +15,11 @@ class Utils{
   static String categoriaPortugues = "Português";
   static String categoriaQuimica = "Química";
   static String categoriaSociologia = "Sociologia";  
- 
+
+  static String removerCaracteresEspeciais(String texto) {
+    texto= texto.replaceAll(new RegExp(r'[^\w\s]+'),'');
+    texto= texto.toLowerCase();
+    return texto;
+  }
+
 }

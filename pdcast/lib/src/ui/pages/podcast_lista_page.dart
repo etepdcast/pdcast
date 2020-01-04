@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pdcast/src/core/models/podCast.dart';
+import 'package:pdcast/src/core/services/podcast_service.dart';
 import 'package:pdcast/src/ui/pages/podcast_page.dart';
+import 'package:pdcast/src/ui/widgets/pod_cast_widget.dart';
 import 'package:pdcast/src/ui/widgets/titulo_widget.dart';
+import 'package:provider/provider.dart';
 
 class PodCastListaPage extends StatefulWidget {
   @override
@@ -11,70 +13,67 @@ class PodCastListaPage extends StatefulWidget {
 }
 
 class _PodCastListaPageState extends State<PodCastListaPage> {
+    List<PodCast> podcasts;
 
+  //   Future<List<PodCast>> _recuperarCanais() async {
+  //   Firestore db = Firestore.instance;
 
-  Future<List<PodCast>> _recuperarCanais() async {
-    Firestore db = Firestore.instance;
+  //   QuerySnapshot querySnapshot =
+  //       await db.collection("canais").getDocuments();
 
-    QuerySnapshot querySnapshot =
-        await db.collection("canais").getDocuments();
+  //   List<PodCast> listaCanais = List();
+  //   for (DocumentSnapshot item in querySnapshot.documents) {
 
-    List<PodCast> listaCanais = List();
-    for (DocumentSnapshot item in querySnapshot.documents) {
+  //     var dados = item.data;
+  //     // if( dados["email"] == _emailUsuarioLogado ) continue;
 
-      var dados = item.data;
-      // if( dados["email"] == _emailUsuarioLogado ) continue;
+  //     PodCast podCast = PodCast();
+  //     podCast.id = item.documentID;
+  //     podCast.nome = dados["nome"];
+  //     podCast.resumo = dados["resumo"];
+  //     podCast.categoria = dados["categoria"];
+  //     podCast.dataCriacao = dados["dataCriacao"];
+  //     podCast.autor = dados["autor"];
 
-      PodCast podCast = PodCast();
-      podCast.id = item.documentID;
-      podCast.nome = dados["nome"];
-      podCast.resumo = dados["resumo"];
-      podCast.categoria = dados["categoria"];
-      podCast.dataCriacao = dados["dataCriacao"];
-      podCast.autor = dados["autor"];
+  //     listaCanais.add(podCast);
+  //   }
 
-      listaCanais.add(podCast);
-    }
-
-    return listaCanais;
-  }
+  //   return listaCanais;
+  // }
 
   @override
   void initState() {
     super.initState();
-    _recuperarCanais();
+    //_recuperarCanais();
   }
 
   Widget projectWidget() {
-    return FutureBuilder(
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.none &&
-            snapshot.hasData == null) {
-          print('project snapshot data is: ${snapshot.data}');
-          return Container();
-        }
-        return ListView.builder(
-          itemCount: snapshot.data.length,
-          itemBuilder: (context, index) {
-            PodCast podCast = snapshot.data[index];
-            return Column(
-              children: <Widget>[
-                Text(podCast.nome,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)
-                ),
-              ],
+    final provider = Provider.of<PodCastService>(context);
+
+    return Container(
+      child: StreamBuilder(
+        stream: provider.fetchPodCastsAsStream(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasData) {
+            podcasts = snapshot.data.documents
+                .map((doc) => PodCast.fromMap(doc.data, doc.documentID))
+                .toList();
+            return ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemCount: podcasts.length,
+              itemBuilder: (buildContext, index) {
+                  return PodCastWidget(podCast: podcasts[index]);
+              }
             );
-          },
-        );
-      },
-      future: _recuperarCanais(),
+          } else {
+            return CircularProgressIndicator(backgroundColor: Colors.cyan, semanticsLabel: 'Carregando');
+          }
+      }),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-
-    
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,

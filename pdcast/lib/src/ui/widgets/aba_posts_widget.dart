@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pdcast/src/core/models/podCast.dart';
-import 'package:pdcast/src/core/utils/utils.dart';
+import 'package:pdcast/src/core/services/podcast_service.dart';
 import 'package:pdcast/src/ui/widgets/pod_cast_widget.dart';
+import 'package:provider/provider.dart';
 
 class AbaPostsWidget extends StatefulWidget {
   @override
@@ -9,31 +11,31 @@ class AbaPostsWidget extends StatefulWidget {
 }
 
 class _AbaPostsWidgetState extends State<AbaPostsWidget> {
-
- final List<PodCast> podcasts = <PodCast>[
-    PodCast(id: "#01", nome: 'A Cara do Brasil', autor: 'Autor 01', categoria: Utils.categoriaArte),
-    PodCast(id: "#02", nome: 'A BH que queremos', autor: 'Autor 02', categoria: Utils.categoriaMatematica),
-    PodCast(id: "#03", nome: 'A casa nômade', autor: 'Autor 03', categoria: Utils.categoriaPortugues),
-    PodCast(id: "#04", nome: 'A Semana política', autor: 'Autor 014', categoria: Utils.categoriaQuimica),
-    PodCast(id: "#05", nome: 'A nossa lingua de todo dia', autor: 'Autor 015', categoria: Utils.categoriaHistoria),
-    PodCast(id: "#06", nome: 'A Politica como Ela É', autor: 'Autor 016', categoria: Utils.categoriaIngles),
-    PodCast(id: "#07", nome: 'Academia CBN', autor: 'Autor 017', categoria: Utils.categoriaGeografia),
-    PodCast(id: "#08", nome: 'Autoesporte na CBN', autor: 'Autor 018', categoria: Utils.categoriaBiologia),
-    PodCast(id: "#09", nome: 'Educação ', autor: 'Autor 9384857', categoria: Utils.categoriaEmpreendedorismo),
-    PodCast(id: "#10", nome: 'Celulas', autor: 'Paulo Rafael Lopes', categoria: Utils.categoriaEducFisica),
-  ];
+  List<PodCast> podcasts;
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<PodCastService>(context);
+
     return Container(
-      child: ListView.separated(
-        padding: const EdgeInsets.all(8),
-        itemCount: podcasts.length,
-        itemBuilder: (BuildContext context, int index) {
-          return PodCastWidget(podCast: podcasts[index]);
-        },
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
-      ),
+      child: StreamBuilder(
+        stream: provider.fetchPodCastsAsStream(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasData) {
+            podcasts = snapshot.data.documents
+                .map((doc) => PodCast.fromMap(doc.data, doc.documentID))
+                .toList();
+            return ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemCount: podcasts.length,
+              itemBuilder: (buildContext, index) {
+                  return PodCastWidget(podCast: podcasts[index]);
+              }
+            );
+          } else {
+            return CircularProgressIndicator(backgroundColor: Colors.cyan, semanticsLabel: 'Carregando');
+          }
+      }),
     );
   }
 }

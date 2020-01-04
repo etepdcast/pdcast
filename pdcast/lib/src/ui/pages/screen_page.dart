@@ -19,9 +19,9 @@ class _ScreenPageState extends State<ScreenPage> {
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             colors: [
-                Colors.green
-                // Color(0xffED213A),
-                // Color(0xff93291E)
+                //Colors.green
+                Color(0xFFFAFA),
+                Color(0xFFFAF0)
               ],
             ),
             navigateAfterSeconds: HomePage(),

@@ -65,7 +65,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
   }
 }
 
-/**
+/*
  * Cria o menu superior
  */
 const List<Choice> choices = const <Choice>[

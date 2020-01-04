@@ -2,9 +2,9 @@ class PodCast {
   // atributos
   String id;
   String nome;
-  String autor;
+  String idAutor;
+  String nomeAutor;
   String pathAudio;
-  String pathICon;
   String categoria;
   String resumo;
   String dataCriacao;
@@ -13,9 +13,9 @@ class PodCast {
   PodCast(
       {this.id,
       this.nome,
-      this.autor,
+      this.idAutor,
+      this.nomeAutor,
       this.pathAudio,
-      this.pathICon,
       this.categoria,
       this.resumo,
       this.dataCriacao
@@ -24,9 +24,9 @@ class PodCast {
   PodCast.fromMap(Map snapshot, String id)
       : id = id ?? '',
         nome = snapshot['nome'] ?? '',
-        autor = snapshot['autor'] ?? '',
+        idAutor = snapshot['idAutor'] ?? '',
+        nomeAutor = snapshot['nomeAutor'] ?? '',
         pathAudio = snapshot['pathAudio'] ?? '',
-        pathICon = snapshot['pathICon'] ?? '',
         categoria = snapshot['categoria'] ?? '',
         resumo = snapshot['resumo'] ?? '',
         dataCriacao = snapshot['dataCriacao'] ?? '';
@@ -34,9 +34,9 @@ class PodCast {
   toJson() {
     return {
       "nome": nome,
-      "autor": autor,
+      "idAutor": idAutor,
+      "nomeAutor": nomeAutor,
       "pathAudio": pathAudio,
-      "pathICon": pathICon,
       "categoria": categoria,
       "resumo": resumo,
       "dataCriacao": dataCriacao,
