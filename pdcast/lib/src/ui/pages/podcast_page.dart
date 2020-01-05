@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pdcast/src/core/models/podCast.dart';
+import 'package:pdcast/src/core/services/podcast_service.dart';
 import 'package:pdcast/src/core/utils/utils.dart';
 import 'package:pdcast/src/ui/pages/podcast_lista_page.dart';
 import 'package:pdcast/src/ui/widgets/titulo_widget.dart';
+import 'package:provider/provider.dart';
 
 class PodCastPage extends StatefulWidget {
   final PodCast podCast;
@@ -40,7 +41,7 @@ class _PodCastPageState extends State<PodCastPage>
     Utils.categoriaIngles,
     Utils.categoriaMatematica,
     Utils.categoriaPortugues,
-    Utils.categoriaQuimica         
+    Utils.categoriaQuimica
   ];
 
   List<DropdownMenuItem<String>> _dropDownMenuItems;
@@ -77,31 +78,32 @@ class _PodCastPageState extends State<PodCastPage>
 
       // Sem erros na validação
       _key.currentState.save();
-      print("Nome $_nome");
-      print("resumo  $_resumo");
-      print("categoria:  $_categoria");
 
       DateTime now = DateTime.now();
+      int dia= now.day;
+      int mes= now.month;
+      int ano= now.year;
 
       // Salva os dados no firebase
-      Firestore.instance.collection("canais").add({
-        "nome": _nome,
-        "resumo": _resumo,
-        "categoria": _categoria,
-        "dataCriacao": "$now.day/$now.month/'$now.year",
-        "idCriador": "IDCRIADOR",
-      }).then((onValue) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => PodCastListaPage()),
-        );
-      }).catchError((error) {
-        print("erro app: " + error.toString());
+      final provider = Provider.of<PodCastService>(context);
+
+      PodCast podcast = PodCast(resumo: _resumo, categoria: _categoria, nome: _nome,
+        dataCriacao: "$dia/$mes/$ano", idAutor: "sssss", nomeAutor: "TAT", pathAudio: "PATHAUDIO");
+
+      provider.addPodCast(podcast)
+      .then((_) => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => PodCastListaPage()),
+          )) 
+
+      .catchError((e) {
+        print("Got error: ${e.error}");
         setState(() {
           _mensagemErro =
               "Erro ao cadastrar o podCast, verifique os campos e tente novamente!";
-        });
+        }); 
       });
+
     } else {
       // erro de validação
       setState(() {
@@ -115,7 +117,7 @@ class _PodCastPageState extends State<PodCastPage>
     return MaterialApp(
       home: new Scaffold(
         appBar: new AppBar(
-            backgroundColor: Colors.black,
+            backgroundColor: Color(0xff795548),
             title: Text('PdCast > Meu podCast'),
             automaticallyImplyLeading: true,
             leading: IconButton(
@@ -167,7 +169,7 @@ class _PodCastPageState extends State<PodCastPage>
         ),
         SizedBox(height: 15.0),
         RaisedButton(
-          color: Colors.green,
+          color: Color(0xff795548),
           textColor: Colors.white,
           disabledColor: Colors.grey,
           shape: new RoundedRectangleBorder(
