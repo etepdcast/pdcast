@@ -141,8 +141,8 @@ class _PodCastWidgetState extends State<PodCastWidget> {
                       highlightColor: Colors.pink,
                       onPressed: () {
                         setState(() {
-                          _tocando ? _pause(widget.podCast.pathAudio) : 
-                                     _play(widget.podCast.pathAudio);
+                          _tocando ? _pause(widget.podCast.pathFile) : 
+                                     _play(widget.podCast.pathFile);
                         });
                       },
                     ),

@@ -14,7 +14,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   void _select(Choice choice) {
-    // Causes the app to rebuild with the new _selectedChoice.
     if (choice.sigla == "CONFIG") {
       Navigator.push(
         context,
@@ -42,9 +41,9 @@ class _HomePageState extends State<HomePage>
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
-          //appBar: AppBarWidget(),
           appBar: AppBar(
             title: Text('PdCast'),
+            //titleSpacing: choices,
             actions: <Widget>[
               PopupMenuButton<Choice>(
                 onSelected: _select,

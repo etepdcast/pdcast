@@ -17,28 +17,31 @@ class UsuarioService extends ChangeNotifier {
     return usuarios;
   }
 
+  Future<QuerySnapshot> getByField(String nome, String dataCadastro) async {
+    return await _api.getByField(nome, dataCadastro);
+  }
+
   Stream<QuerySnapshot> fetchUsuariosAsStream() {
     return _api.streamDataCollection();
   }
 
   Future<Usuario> getUsuarioById(String id) async {
     var doc = await _api.getDocumentById(id);
-    return  Usuario.fromMap(doc.data, doc.documentID) ;
+    return Usuario.fromMap(doc.data, doc.documentID);
   }
 
-
-  Future removeUsuario(String id) async{
-     await _api.removeDocument(id) ;
-     return ;
-  }
-  Future updateUsuario(Usuario data,String id) async{
-    await _api.updateDocument(data.toJson(), id) ;
-    return ;
+  Future removeUsuario(String id) async {
+    await _api.removeDocument(id);
+    return;
   }
 
-  Future addUsuario(Usuario data) async{
-    var result  = await _api.addDocument(data.toJson()) ;
+  Future updateUsuario(Usuario data, String id) async {
+    await _api.updateDocument(data.toJson(), id);
+    return;
+  }
+
+  Future addUsuario(String hash, Usuario data) async {
+    var result = await _api.addDocument(hash, data.toJson());
     return result;
   }
-
 }

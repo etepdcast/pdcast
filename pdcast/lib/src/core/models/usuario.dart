@@ -7,6 +7,7 @@ class Usuario {
   String turma;
   bool ativo;
   bool professor;
+  String dataCadastro;
 
   // construtor
   Usuario(
@@ -16,6 +17,7 @@ class Usuario {
       this.serie,
       this.turma,
       this.ativo,
+      this.dataCadastro,
       this.professor});
 
   Usuario.fromMap(Map snapshot, String id)
@@ -25,6 +27,7 @@ class Usuario {
         serie = snapshot['serie'] ?? '',
         turma = snapshot['turma'] ?? '',
         ativo = snapshot['ativo'] ?? '',
+        dataCadastro = snapshot['dataCadastro'] ?? '',
         professor = snapshot['professor'] ?? '';
 
   toJson() {
@@ -34,6 +37,7 @@ class Usuario {
       "serie": serie,
       "turma": turma,
       "ativo": ativo,
+      "dataCadastro": dataCadastro,
       "professor": professor,
     };
   }

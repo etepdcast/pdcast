@@ -4,7 +4,7 @@ class PodCast {
   String nome;
   String idAutor;
   String nomeAutor;
-  String pathAudio;
+  String pathFile;
   String categoria;
   String resumo;
   String dataCriacao;
@@ -15,7 +15,7 @@ class PodCast {
       this.nome,
       this.idAutor,
       this.nomeAutor,
-      this.pathAudio,
+      this.pathFile,
       this.categoria,
       this.resumo,
       this.dataCriacao
@@ -26,7 +26,7 @@ class PodCast {
         nome = snapshot['nome'] ?? '',
         idAutor = snapshot['idAutor'] ?? '',
         nomeAutor = snapshot['nomeAutor'] ?? '',
-        pathAudio = snapshot['pathAudio'] ?? '',
+        pathFile = snapshot['pathFile'] ?? '',
         categoria = snapshot['categoria'] ?? '',
         resumo = snapshot['resumo'] ?? '',
         dataCriacao = snapshot['dataCriacao'] ?? '';
@@ -36,7 +36,7 @@ class PodCast {
       "nome": nome,
       "idAutor": idAutor,
       "nomeAutor": nomeAutor,
-      "pathAudio": pathAudio,
+      "pathFile": pathFile,
       "categoria": categoria,
       "resumo": resumo,
       "dataCriacao": dataCriacao,

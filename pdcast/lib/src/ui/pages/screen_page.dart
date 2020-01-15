@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pdcast/src/ui/pages/home_page.dart';
+import 'package:pdcast/src/ui/pages/login_page.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 class ScreenPage extends StatefulWidget {
@@ -24,7 +24,7 @@ class _ScreenPageState extends State<ScreenPage> {
                 Color(0xFFFAF0)
               ],
             ),
-            navigateAfterSeconds: HomePage(),
+            navigateAfterSeconds: LoginPage(),
             loaderColor: Colors.transparent,
         ),
         Container(

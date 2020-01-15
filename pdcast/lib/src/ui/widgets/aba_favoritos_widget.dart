@@ -19,7 +19,7 @@ class _AbaFavoritosWidgetState extends State<AbaFavoritosWidget> {
       //final provider = PodCastService();
       return Container(
         child: StreamBuilder(
-            stream: provider.fetchPodCastsAsStream(),
+            stream: provider.fetchPodCastsAsStream(null),
             builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasData) {
                 podcasts = snapshot.data.documents
@@ -33,7 +33,10 @@ class _AbaFavoritosWidgetState extends State<AbaFavoritosWidget> {
                   }
                 );
               } else {
-                return Text('fetching');
+                return CircleAvatar(
+                  radius: 100,
+                  backgroundColor: Colors.grey
+                );
               }
             }),
       );

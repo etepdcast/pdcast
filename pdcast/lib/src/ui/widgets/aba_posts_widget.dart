@@ -19,7 +19,7 @@ class _AbaPostsWidgetState extends State<AbaPostsWidget> {
 
     return Container(
       child: StreamBuilder(
-        stream: provider.fetchPodCastsAsStream(),
+        stream: provider.fetchPodCastsAsStream(null),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {
             podcasts = snapshot.data.documents
@@ -33,7 +33,10 @@ class _AbaPostsWidgetState extends State<AbaPostsWidget> {
               }
             );
           } else {
-            return CircularProgressIndicator(backgroundColor: Colors.cyan, semanticsLabel: 'Carregando');
+            return CircleAvatar(
+                  radius: 100,
+                  backgroundColor: Colors.grey
+                );
           }
       }),
     );

@@ -17,8 +17,8 @@ class PodCastService extends ChangeNotifier {
     return podCasts;
   }
 
-  Stream<QuerySnapshot> fetchPodCastsAsStream() {
-    return _api.streamDataCollection();
+  Stream<QuerySnapshot> fetchPodCastsAsStream(String idAutor) {
+    return _api.streamDataCollection(idAutor);
   }
 
   Future<PodCast> getPodCastById(String id) async {

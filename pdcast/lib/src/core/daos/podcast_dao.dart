@@ -5,28 +5,41 @@ class PodCastDao {
   CollectionReference ref;
 
   PodCastDao() {
-    ref = _db.collection( 'podcasts' );
+    ref = _db.collection('podcasts');
   }
 
   Future<QuerySnapshot> getDataCollection() {
-    return ref.getDocuments() ;
+    return ref.getDocuments();
   }
-  Stream<QuerySnapshot> streamDataCollection() {
-    return ref.snapshots() ;
+
+  Stream<QuerySnapshot> streamDataCollection(String idAutor) {
+    if (idAutor == null) {
+      print("streamDataCollection > ref.snapshots");
+      return ref.snapshots();
+    } else {
+      print("streamDataCollection > ref.where autor isEqualTo $idAutor");
+      return ref.where("autor", isEqualTo: idAutor).snapshots();
+    }
   }
+
   Future<DocumentSnapshot> getDocumentById(String id) {
     return ref.document(id).get();
   }
-  Future<void> removeDocument(String id){
+
+  Future<void> removeDocument(String id) {
     return ref.document(id).delete();
   }
+
   Future<DocumentReference> addDocument(Map data) {
     return ref.add(data);
   }
-  Future<void> updateDocument(Map data , String id) {
-    return ref.document(id).updateData(data) ;
+
+  Future<void> updateDocument(Map data, String id) {
+    return ref.document(id).updateData(data);
   }
-  Future<QuerySnapshot> getByField(dynamic campo, String operador, String valor) {
+
+  Future<QuerySnapshot> getByField(
+      dynamic campo, String operador, String valor) {
     return ref.where(campo, isEqualTo: valor).getDocuments();
     //.where("nome", isEqualTo: "jamilton")
     //.where("idade", isEqualTo: 31)
