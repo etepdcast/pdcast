@@ -49,11 +49,9 @@ class _PodCastPageState extends State<PodCastPage>
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       _userId = prefs.getString("userId");
-      _userNome = prefs.getString("nome");     
-      print("= = = = = = = = = = = = = = = = = = = = = =");
-      print("= = = uid  $_userId = = = =");
-      print("= = = nome $_userNome = = = =");
-      print("= = = = = = = = = = = = = = = = = = = = = =");      
+      _userNome = prefs.getString("nome");  
+      print(" > > > > > > > > > > > > > > > > > > > > > > > >");
+      print(" > > > > > >  uid  $_userId = = nome $_userNome = = = =");
     });
   }
 
@@ -91,9 +89,6 @@ class _PodCastPageState extends State<PodCastPage>
 
   Future _recuperarUrlImagem(StorageTaskSnapshot snapshot) async {
     String url = await snapshot.ref.getDownloadURL();
-      print("= = = = = = = = = = = = = = = = = = = = = =");
-      print("= = = resultado url  $url = = = =");
-      print("= = = = = = = = = = = = = = = = = = = = = =");  
     setState(() {
       _urlFileRecuperada = url;
     });

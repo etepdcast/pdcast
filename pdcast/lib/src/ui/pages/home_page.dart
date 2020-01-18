@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage>
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primaryColor: Color(0xff795548)),
+        primaryColor: Color(0xff795548)),
       home: DefaultTabController(
         length: 2,
         child: Scaffold(

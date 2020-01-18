@@ -14,10 +14,12 @@ class PodCastDao {
 
   Stream<QuerySnapshot> streamDataCollection(String idAutor) {
     if (idAutor == null) {
-      print("streamDataCollection > ref.snapshots");
+      print(" > > > > > > > > > > > > > > > > > > > > > > > >");
+      print(" > > > > > >  streamDataCollection > ref.snapshots");
       return ref.snapshots();
     } else {
-      print("streamDataCollection > ref.where autor isEqualTo $idAutor");
+      print(" > > > > > > > > > > > > > > > > > > > > > > > >");
+      print(" > > > > > >  streamDataCollection > ref.where autor isEqualTo $idAutor");
       return ref.where("autor", isEqualTo: idAutor).snapshots();
     }
   }
@@ -41,17 +43,5 @@ class PodCastDao {
   Future<QuerySnapshot> getByField(
       dynamic campo, String operador, String valor) {
     return ref.where(campo, isEqualTo: valor).getDocuments();
-    //.where("nome", isEqualTo: "jamilton")
-    //.where("idade", isEqualTo: 31)
-    //.where("idade", isGreaterThan: 15)//< menor, > maior, >= maior ou igual, <= menor ou igual
-    //.where("idade", isLessThan: 30)
-    //descendente (do maior para o menor) ascendente (do menor para o maior)
-    //.orderBy("idade", descending: true )
-    //.orderBy("nome", descending: false )
-    //.limit(1)
-    // .where("nome", isGreaterThanOrEqualTo: pesquisa)
-    // .where("nome", isLessThanOrEqualTo: pesquisa + "\uf8ff" )
-
-    //return null;//Future(querySnapshot) ;
   }
 }

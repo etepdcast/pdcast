@@ -28,10 +28,8 @@ class _PodCastListaPageState extends State<PodCastListaPage> {
     setState(() {
       _userId = prefs.getString("userId");
       _userNome = prefs.getString("nome");
-      print("= = = = = = = = = = = = = = = = = = = = = =");
-      print("= = = uid  $_userId = = = =");
-      print("= = = nome $_userNome = = = =");
-      print("= = = = = = = = = = = = = = = = = = = = = =");
+      print(" > > > > > > > > > > > > > > > > > > > > > > > >");
+      print(" > > > > > >  GET_USER => uid  $_userId = nome $_userNome");
     });
   }
   

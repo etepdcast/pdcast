@@ -27,7 +27,10 @@ class UsuarioService extends ChangeNotifier {
 
   Future<Usuario> getUsuarioById(String id) async {
     var doc = await _api.getDocumentById(id);
-    return Usuario.fromMap(doc.data, doc.documentID);
+    if ( doc != null ) {
+      return Usuario.fromMap(doc.data, doc.documentID);
+    } 
+    return null;
   }
 
   Future removeUsuario(String id) async {

@@ -51,10 +51,7 @@ class _LoginPageState extends State<LoginPage> {
     
     _setUser(user);
 
-    // print("$_userId == $currentUser.uid");
-    // print("= = = = = => _userID => $_userId");
-
-    setState(() {
+    //setState(() {
       if (user != null) {
         // Salva os dados no firebase
         final provider = Provider.of<UsuarioService>(context);
@@ -68,13 +65,23 @@ class _LoginPageState extends State<LoginPage> {
             nome: user.displayName,
             ativo: true,
             dataCadastro: "$dia/$mes/$ano");
+        print(" > > > > > > > > > > > > > > > > > > > > > > > >");
+        print(" > > > > > >  ADD USER: UID $_userId ");
 
-        provider.addUsuario(_userId, usuario).then((_) {
-          print("Usuario inserido no firebase $_userId");
-        });
+        if ( provider.getUsuarioById(_userId) == null ) {
+          provider.addUsuario(_userId, usuario).then((_) {
+            print(" > > > > > > > > > > > > > > > > > > > > > > > >");
+            print(" > > > > > >  INSERTED USER FIREBASE: UID $_userId ");
+          });
+
+        } else {
+          print(" > > > > > > > > > > > > > > > > > > > > > > > >");
+          print(" > > > > > >  EXISTES USER FIREBASE: UID $_userId ");
+        }
+
       } 
 
-    });
+    //});
     return _userId;
   }
 
@@ -96,9 +103,8 @@ class _LoginPageState extends State<LoginPage> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 String text= snapshot.data;
-                print(" = = = = = = =  = = = = = = = = = = = = = = ");
-                print(" = = = = = = = E N V I A D O  $text = = = = ");
-                print(" = = = = = = =  = = = = = = = = = = = = = = "); 
+                print(" > > > > > > > > > > > > > > > > > > > > > > > >");
+                print(" > > > > > >  ADD USER: UID $text ");
 
                 Future.delayed(const Duration(milliseconds: 500), () {
                   Navigator.push(context,
@@ -111,17 +117,8 @@ class _LoginPageState extends State<LoginPage> {
                       "Login realizado com sucesso",
                       style: TextStyle(fontSize: 20.0),
                   ),
-                );                               
-                // Navigator.push(context,
-                //   MaterialPageRoute(builder: (context) => HomePage()),
-                // );
-                //Navigator.of(context).pushNamed("/home");
-                // return Center(
-                //     child: Text(
-                //        snapshot.data,
-                //        style: TextStyle(fontSize: 20.0),
-                //     ),
-                //   );
+                ); 
+
               } else {
                 return Center(
                   child: CircularProgressIndicator(),
